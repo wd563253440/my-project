@@ -23,7 +23,8 @@ function createWindow () {
     height: 900,
     x: 10,
     y: 10,
-    useContentSize: true
+    useContentSize: true,
+    icon: 'static/image/favicon_main.ico'
     // frame: false
   })
   mainWindow.loadURL(winURL)
