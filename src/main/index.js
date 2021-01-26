@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain, Notification, Tray, Menu } from 'electron'
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -32,6 +32,25 @@ function createWindow () {
     mainWindow = null
   })
   mainWindow.setMenu(null)
+  // mainWindow.addDevToolsExtension('node_modules/vue-devtools/vender')
+  const appTray = new Tray('static/image/favicon_main.ico')
+  const trayMenuTemplate = [
+    {
+      label: '显示/隐藏',
+      icon: 'static/image/favicon_main.ico',
+      click: function () {
+        return mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
+      }
+    },
+    {
+      label: '退出',
+      click: function () {
+        app.quit()
+      }
+    }
+  ]
+  const contextMenu = Menu.buildFromTemplate(trayMenuTemplate)
+  appTray.setContextMenu(contextMenu)
 }
 
 app.on('ready', createWindow)
@@ -46,4 +65,14 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+ipcMain.on('sd', () => {
+  console.log('sss')
+  console.log(Notification.isSupported())
+  let notification = new Notification({
+    title: 's',
+    body: 'Have a good day~'
+  })
+  notification.show()
 })
