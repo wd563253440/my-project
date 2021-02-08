@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, ipcMain, Notification, Tray, Menu } from 'electron'
+import { app, BrowserWindow, Notification, Tray, Menu } from 'electron'
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -51,6 +51,16 @@ function createWindow () {
   ]
   const contextMenu = Menu.buildFromTemplate(trayMenuTemplate)
   appTray.setContextMenu(contextMenu)
+  if (process.platform === 'win32') {
+    app.setAppUserModelId('www.baomutech.com')
+  }
+  let notification = new Notification({
+    title: '宝牧科技',
+    body: '终端检测与安全防护API',
+    icon: 'static/image/favicon_main.ico',
+    silent: false
+  })
+  notification.show()
 }
 
 app.on('ready', createWindow)
@@ -65,14 +75,4 @@ app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
   }
-})
-
-ipcMain.on('sd', () => {
-  console.log('sss')
-  console.log(Notification.isSupported())
-  let notification = new Notification({
-    title: 's',
-    body: 'Have a good day~'
-  })
-  notification.show()
 })
