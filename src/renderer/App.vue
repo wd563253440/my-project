@@ -5,8 +5,12 @@
 </template>
 
 <script>
+  import HelloWorld from './components/WdMarkDown'
   export default {
-    name: 'my-project'
+    name: 'my-project',
+    components: {
+      HelloWorld
+    }
   }
 </script>
 
