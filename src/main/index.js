@@ -14,6 +14,8 @@ const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
+let notification = null
+
 function createWindow () {
   /**
    * Initial window options
@@ -37,7 +39,7 @@ function createWindow () {
   const trayMenuTemplate = [
     {
       label: '显示/隐藏',
-      icon: 'static/image/favicon_main.ico',
+      // icon: 'static/image/favicon_main.ico',
       click: function () {
         return mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
       }
@@ -54,7 +56,7 @@ function createWindow () {
   if (process.platform === 'win32') {
     app.setAppUserModelId('www.baomutech.com')
   }
-  let notification = new Notification({
+  notification = new Notification({
     title: '宝牧科技',
     body: '终端检测与安全防护API',
     icon: 'static/image/favicon_main.ico',
