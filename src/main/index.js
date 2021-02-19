@@ -14,7 +14,7 @@ const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
-let notification = null
+let appTray = null
 
 function createWindow () {
   /**
@@ -35,7 +35,7 @@ function createWindow () {
   })
   mainWindow.setMenu(null)
   // mainWindow.addDevToolsExtension('node_modules/vue-devtools/vender')
-  const appTray = new Tray('static/image/favicon_main.ico')
+  appTray = new Tray('static/image/favicon_main.ico')
   const trayMenuTemplate = [
     {
       label: '显示/隐藏',
@@ -56,7 +56,7 @@ function createWindow () {
   if (process.platform === 'win32') {
     app.setAppUserModelId('www.baomutech.com')
   }
-  notification = new Notification({
+  let notification = new Notification({
     title: '宝牧科技',
     body: '终端检测与安全防护API',
     icon: 'static/image/favicon_main.ico',
