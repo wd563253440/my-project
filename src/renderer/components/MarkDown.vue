@@ -14,16 +14,16 @@
         <!--主要内容区-->
         <div class="content_bar">
             <!--markdown编辑器区-->
-            <div class="markdown_body">
+            <div class="markdown_body" ref="ref_markdown_body">
                 <textarea ref="ref_md_edit" class="md_textarea_content" v-model="markString">
                 </textarea>
             </div>
             <!-- 界面分割区 -->
-            <div class="markdown_space">
+            <div class="markdown_space" v-on:click="foldDiv" ref="ref_md_space">
 
             </div>
             <!--解析成html区-->
-            <div class="html_body">
+            <div class="html_body" ref="ref_html_body" v-show="htmlBodyShow">
                 <p v-html="htmlString"></p>
             </div>
         </div>
@@ -48,7 +48,8 @@
       data () {
         return {
           markString: '',
-          htmlString: ''
+          htmlString: '',
+          htmlBodyShow: true
         }
       },
       mounted () {
@@ -66,6 +67,15 @@
         // 加下划线
         addUnderline () {
           this.changeSelectedText('<u>', '</u>')
+        },
+        foldDiv () {
+          if (this.htmlBodyShow) {
+            this.htmlBodyShow = false
+            this.$refs.ref_markdown_body.style.width = '100%'
+          } else {
+            this.htmlBodyShow = true
+            this.$refs.ref_markdown_body.style.width = '50%'
+          }
         },
         changeSelectedText (startString, endString) {
           let t = this.$refs.ref_md_edit
