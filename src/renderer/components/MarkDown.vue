@@ -13,6 +13,12 @@
         </div>
         <!--主要内容区-->
         <div class="content_bar">
+            <!-- markdown文件列表区 -->
+            <div class="markdown_dir" ref="ref_markdown_dir" >
+              <li ref="ref_md_markdown_dir" class="md_markdown_dir" v-html="markdownDir" v-bind:title="testDir">
+                </li>
+
+            </div>
             <!--markdown编辑器区-->
             <div class="markdown_body" ref="ref_markdown_body">
                 <textarea ref="ref_md_edit" class="md_textarea_content" v-model="markString">
@@ -33,6 +39,7 @@
     import marked from 'marked' // 解析mardown语法的库
     import hljs from 'highlight.js' // 对代码进行语法高亮的库
     import testData from '../testData' // 测试数据
+    import testDir from '../testDir' // 测试数据
     export default {
       name: 'HelloMarkDown',
       props: {
@@ -49,11 +56,13 @@
         return {
           markString: '',
           htmlString: '',
+          markdownDir: [],
           htmlBodyShow: true
         }
       },
       mounted () {
         this.markString = testData
+        this.markdownDir = testDir
       },
       methods: {
         // 加粗
@@ -71,10 +80,10 @@
         foldDiv () {
           if (this.htmlBodyShow) {
             this.htmlBodyShow = false
-            this.$refs.ref_markdown_body.style.width = '100%'
+            this.$refs.ref_markdown_body.style.width = '90%'
           } else {
             this.htmlBodyShow = true
-            this.$refs.ref_markdown_body.style.width = '50%'
+            this.$refs.ref_markdown_body.style.width = '45%'
           }
         },
         changeSelectedText (startString, endString) {
@@ -116,6 +125,9 @@
               hljs.highlightBlock(elem)
             })
           })
+        },
+        markdownDir: function (value) {
+          console.log(value)
         }
       }
     }
@@ -153,15 +165,22 @@
         height: 100%;
     }
 
+    .markdown_dir {
+        width: 10%;
+    }
+
+    .markdown_dir li {
+      list-style:none;
+    }
     .markdown_body {
-        width: 50%;
+        width: 45%;
         height: 100%;
         display: flex;
         display: -webkit-flex;
     }
 
     .html_body {
-        width: 50%;
+        width: 45%;
         height: 100%;
         display: flex;
         display: -webkit-flex;
