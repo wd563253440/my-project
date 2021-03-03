@@ -5,13 +5,22 @@
             <span v-on:click="addBold"><B>B</B></span>
             <span v-on:click="addUnderline"><B>U</B></span>
             <span v-on:click="addItalic"><B>I</B></span>
+            <span v-on:click="addItalic"><B>md转html</B></span>
+            <span v-on:click="addItalic"><B>html转md</B></span>
+            <span v-on:click="addItalic"><B>下载</B></span>
+            <span v-on:click="addItalic"><B>保存</B></span>
+            <span v-on:click="addItalic"><B>新建</B></span>
         </div>
         <!--主要内容区-->
         <div class="content_bar">
             <!--markdown编辑器区-->
             <div class="markdown_body">
-        <textarea ref="ref_md_edit" class="md_textarea_content" v-model="markString">
-        </textarea>
+                <textarea ref="ref_md_edit" class="md_textarea_content" v-model="markString">
+                </textarea>
+            </div>
+            <!-- 界面分割区 -->
+            <div class="markdown_space">
+
             </div>
             <!--解析成html区-->
             <div class="html_body">
@@ -29,11 +38,11 @@
       props: {
         width: {
           type: String,
-          default: '1000px'
+          default: '1376px'
         },
         height: {
           type: String,
-          default: '600px'
+          default: '920px'
         }
       },
       data () {
@@ -93,7 +102,7 @@
             const codes = document.querySelectorAll('.html_body pre code')
             // elem 是一个 object
             codes.forEach(elem => {
-              elem.innerHTML = '<ul><li>' + elem.innerHTML.replace(/\n/g, '\n</li><li>') + '\n</li></ul>'
+              elem.innerHTML = '<ul style="list-style:none"><li>' + elem.innerHTML.replace(/\n/g, '\n</li><li>') + '\n</li></ul>'
               hljs.highlightBlock(elem)
             })
           })
@@ -118,11 +127,13 @@
     }
 
     div.button_bar span {
-        width: 30px;
+        /* width: 30px; */
         line-height: 40px;
         text-align: center;
         color: orange;
         cursor: pointer;
+        white-space: nowrap;
+        margin: 5px;
     }
 
     .content_bar {
@@ -144,7 +155,9 @@
         height: 100%;
         display: flex;
         display: -webkit-flex;
-        background-color: #dfe9f1;
+        background-color: #232323;
+        color: blanchedalmond;
+        overflow:auto;
     }
 
     .md_textarea_content {
@@ -156,9 +169,15 @@
         resize: none;
         outline: none;
         border: none;
-        background-color: #f4f4f4;
+        background-color:#232323;
         font-size: 14px;
-        color: #232323;
+        color:blanchedalmond;
         line-height: 24px;
+    }
+
+    .markdown_space {
+        width: 10px;
+        background-color: burlywood;
+        height: 100%;
     }
 </style>
