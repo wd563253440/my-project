@@ -33,6 +33,16 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  mainWindow.on('maximize', () => {
+    mainWindow.webContents.send('maximize')
+  })
+  mainWindow.on('minimize', () => {
+    mainWindow.webContents.send('minimize')
+  })
+  mainWindow.on('resize', () => {
+    // 窗口变化后,通知渲染进程自适应页面
+    mainWindow.webContents.send('resize')
+  })
   mainWindow.setMenu(null)
   // mainWindow.addDevToolsExtension('node_modules/vue-devtools/vender')
   appTray = new Tray('static/image/favicon_main.ico')

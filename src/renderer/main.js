@@ -19,3 +19,13 @@ new Vue({
   store,
   template: '<App/>'
 }).$mount('#app')
+
+const ipcRenderer = require('electron').ipcRenderer
+
+ipcRenderer.on('maximize', () => {
+  console.log('窗口最大化')
+})
+
+ipcRenderer.on('minimize', () => {
+  console.log('窗口最小化')
+})
