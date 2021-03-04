@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, Notification, Tray, Menu } from 'electron'
+import { app, BrowserWindow, Notification, Tray, Menu, screen } from 'electron'
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -20,13 +20,16 @@ function createWindow () {
   /**
    * Initial window options
    */
+  const screenWidth = screen.getPrimaryDisplay().workAreaSize.width
+  const screenHeight = screen.getPrimaryDisplay().workAreaSize.height
+  console.log(screenWidth)
+  console.log(screenHeight)
   mainWindow = new BrowserWindow({
-    width: 1376,
-    height: 900,
-    x: 10,
-    y: 10,
+    width: screenWidth,
+    height: screenHeight,
     useContentSize: true,
-    icon: 'static/image/favicon_main.ico'
+    icon: 'static/image/favicon_main.ico',
+    maximizable: true
     // frame: false
   })
   mainWindow.loadURL(winURL)

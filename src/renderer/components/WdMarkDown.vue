@@ -9,7 +9,7 @@
     import HelloMarkDown from './MarkDown'
     const ipcRenderer = require('electron').ipcRenderer
     ipcRenderer.on('resize', () => {
-      console.log(HelloMarkDown)
+      console.log(HelloMarkDown.props.width.default)
     })
     export default {
       name: 'HelloWorld',

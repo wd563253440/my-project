@@ -40,7 +40,6 @@
     import hljs from 'highlight.js' // 对代码进行语法高亮的库
     import testData from '../testData' // 测试数据
     import testDir from '../testDir' // 测试数据
-    
     export default {
       name: 'HelloMarkDown',
       props: {
