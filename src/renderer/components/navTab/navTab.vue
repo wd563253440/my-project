@@ -7,13 +7,11 @@
       {{this.level1}}
     </div>
     <div class="nav-left">
-      <div class="nav-level" v-for='(item,index) in nav_length' :key="item.index">
+      <div class="nav-level" v-for='(item,index) in nav_length' :key="item.index" @click="foldNav(index)">
         <a href="#">
           <li>
-            <div class='nav-level2' v-if="level1[index].length > 1">
-              aa
-            </div>
-            <span>{{level1[index][0]}}</span>
+            <div class='nav-level2' v-if="level1[index].length > 1">{{level1[index][1][0]}}</div>
+            <span class="nav-span">{{level1[index][0]}}</span>
           </li>
         </a>
       </div>
@@ -38,11 +36,17 @@ export default {
   methods: {
     level1_init () {
       console.log(this.level1.length)
+    },
+    foldNav (index) {
+      console.log(this.level1[index])
     }
   }
 }
 </script>
 <style>
+.nav-span {
+  color:#fff;
+}
 .nav-level2 {
   display: none;
 }
@@ -56,6 +60,12 @@ export default {
 	cursor: pointer;
 	position: relative;
 }
+.nav-level:hover {
+  background-color: grey;
+}
+.nav-level a {
+    text-decoration:none;
+  }
 .nav-top-left {
   width: 200px !important;
   height: 40px;
