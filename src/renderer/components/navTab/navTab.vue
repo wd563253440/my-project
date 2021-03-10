@@ -92,7 +92,7 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 1001;
-  overflow: hidden;
+  overflow-x: hidden;
   margin-top: 40px;
 }
 
