@@ -1,5 +1,5 @@
 <template>
-  <div class="loading-box">
+  <div class="nav-div">
     
   </div>
 </template>
@@ -9,10 +9,10 @@
   }
 </script>
 <style>
-  .loading-box{
+  .nav-div{
     -webkit-transition: width .28s;
     transition: width .28s;
-    width: 210px!important;
+    width: 200px!important;
     background-color: #304156;
     height: 100%;
     position: fixed;
