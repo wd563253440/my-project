@@ -8,6 +8,9 @@
 # install dependencies
 npm install
 
+# install vue component ->  marked
+npm install marked
+
 # serve with hot reload at localhost:9080
 npm run dev
 
