@@ -4,7 +4,6 @@
 
     </div>
     <div class="nav-top" @click="level1_init">
-      {{this.level1}}
     </div>
     <div class="nav-left">
       <div class="nav-level" v-for='(item,index) in nav_length' :key="item.index" @click="foldNav(index)">
@@ -69,8 +68,26 @@ export default {
 .nav-top-left {
   width: 200px !important;
   height: 40px;
-  background-color: lawngreen;
-  overflow: hidden;
+  background-color:azure;
+  overflow: hidden; 
+}
+.nav-left::-webkit-scrollbar {
+  width: 4px;
+  background-color: aqua;    
+  /*height: 4px;*/
+}
+.nav-left::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background: rgba(0,0,0,0.2);
+}
+.nav-left::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  background: rgba(0,0,0,0.1);
+
 }
 .nav-top {
   height: 40px !important;
